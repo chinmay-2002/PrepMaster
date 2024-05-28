@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <style media="screen">
+    .jumbotron {
+      width: 600px;
+      margin-top: 100px;
+      margin-bottom: 0px;
+      position: relative;
+     /* Replace 'background.jpg' with the path to your image */
+      background-position: center;
+      color: rgb(6, 5, 5); /* Set text color to white for better contrast */
+      text-shadow: 2px 2px 4px #f2f1f175; /* Add text shadow for better readability */
+    }
+
+    .jumbotron h1 {
+      text-align: center;
+    }
+
+    .alert {
+      margin: 0px;
+    }
+  </style>
+
+  <title></title>
+</head>
+
+<body style='background-image: url("https://static.vecteezy.com/system/resources/previews/011/091/556/non_2x/students-take-online-quizzes-through-the-university-website-knowledge-testing-concepts-fill-out-application-forms-competence-assessments-and-online-learning-free-photo.jpg"); '>
+
+  {% include "quiz/navbar.html" %}
+  <br><br>  
+
+  <center>
+   
+  
+  <div class="jumbotron" >
+    <h3 class='alert alert-success' style="margin-bottom:0px;color: rgb(110, 13, 13);">Rank Board</h3>
+    <br>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+        </div>
+        
+        <table class="table table-hover" id="dev-table">
+          <thead>
+            <tr>
+    
+              <th>Rank</th>
+              <th>Student Name</th>
+              <th> Marks Percentage</th>
+            </tr>
+          </thead>
+          {% for student_data in sorted_students %}
+                  <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ student_data.student.user.first_name }} {{ student_data.student.user.last_name }}</td>
+                    <td>{{ student_data.average_marks_percentage }} %</td>
+                  </tr>
+          {% endfor %}
+        </table>
+      </div>
+    </div>
+  </div></center>
+<br><br><br>
+  {% include "quiz/footer.html" %}
+</body>
+
+</html>

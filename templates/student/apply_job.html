@@ -1,0 +1,114 @@
+{% extends 'student/studentbase.html' %}
+{% block content %}
+<head>
+<style>
+    .container {
+    margin: 50px auto;
+    max-width: 800px;
+    text-align: center;
+}
+
+.heading {
+    color: #333;
+}
+.job-list {
+    display: flex;
+    justify-content: space-between;
+}
+
+.column {
+    width: 45%; /* Adjust the width of each column as needed */
+}
+
+
+
+/* Optional: Add additional styling for job description */
+.job-description {
+    margin-top: 10px;
+    display: inline-block;
+}
+
+
+.job-item {
+    background-color: #f9f9f9;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+}
+
+.job-item h3 {
+    margin-top: 0;
+}
+
+.details {
+    margin-bottom: 10px;
+}
+
+.apply-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.apply-btn:hover {
+    background-color: #45a049;
+}
+
+</style>
+</head>
+
+<br><br>
+
+<div class="container">
+    <h1 class="heading">Apply for Job</h1>
+    <div class="job-list">
+        <div class="column">
+            {% for job in jobs %}
+                {% if forloop.counter0|divisibleby:2 %}
+                    <div class="job-item">
+                        <h3>{{ job.title }}</h3>
+                        <p class="details" style="color: crimson;">{{ job.company_name }}</p>
+                        <p class="details">{{ job.location }}</p>
+                        <div class="job-description">
+                            <p><strong>Job Description:</strong></p>
+                            <pre >{{ job.position }}</pre>
+                        </div>
+                        <!-- <p class="details">Link for Apply Job: <a href="{{ job.requirements }}">{{ job.requirements }}</a></p> -->
+                        <form method="post" action="{% url 'apply_job' job.id %}">
+                            {% csrf_token %}
+                            <button class="apply-btn" type="submit"> <a href="{{ job.requirements }}" target="_blank">Apply</a></button>
+                        </form>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="column">
+            {% for job in jobs %}
+                {% if not forloop.counter0|divisibleby:2 %}
+                    <div class="job-item" >
+                        <h3>{{ job.title }}</h3>
+                        <p class="details" style="color: crimson;">{{ job.company_name }}</p>
+                        <p class="details">{{ job.location }}</p>
+                        <div class="job-description">
+                            <p><strong>Job Description:</strong></p>
+                            <pre>{{ job.position }}</pre>
+                        </div>
+                        <!-- <p class="details">Link for Apply Job: <a href="{{ job.requirements }}">{{ job.requirements }}</a></p> -->
+                        <form method="post" action="{% url 'apply_job' job.id %}">
+                            {% csrf_token %}
+                            <button class="apply-btn" type="submit"><a href="{{ job.requirements }}" target="_blank">Apply</a></button>
+                        </form>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <style media="screen">
+    .jumbotron {
+      width: 600px;
+      margin-top: 100px;
+      margin-bottom: 0px;
+      position: relative;
+      background-size: cover;
+      background-position: center;
+      color: rgb(7, 5, 5); /* Set text color to white for better contrast */
+      text-shadow: 2px 2px 4px #000000; /* Add text shadow for better readability */
+    }
+
+    .jumbotron h1 {
+      text-align: center;
+    }
+
+  </style>
+
+</head>
+
+<body style='background-image: url("https://static.vecteezy.com/system/resources/previews/011/091/556/non_2x/students-take-online-quizzes-through-the-university-website-knowledge-testing-concepts-fill-out-application-forms-competence-assessments-and-online-learning-free-photo.jpg");'>
+
+  {% include "quiz/navbar.html" %}
+  <br><br>
+  <center>
+  <div class="jumbotron" style="margin-bottom:0px;">
+    <h1 class="display-4">Hello, Teacher</h1>
+    <p class="lead">Welcome to PrepMaster</p>
+    <hr class="my-4">
+    <p>You can access various features after Login.</p>
+    <p class="lead">
+      <a class="btn btn-primary btn-lg" href="teachersignup" role="button">Create Your Account</a>
+      <a class="btn btn-primary btn-lg" href="teacherlogin" role="button">Login</a>
+    </p>
+    <br><br>
+  </div></center>
+  <br><br>
+  {% include "quiz/footer.html" %}
+</body>
+
+</html>
